@@ -1,0 +1,15 @@
+<hr>
+<div *ngIf="movie">
+<h2>{{movie.original_title}} Details</h2>
+
+<div><span>ID: </span>{{movie.id}}</div>
+<div><span>Original Title: </span>{{movie.original_title}}</div>
+<div><span>Date: </span>{{movie.release_date | date:'MM/dd/yyyy'}}</div>
+<div><span>OverView: </span>{{movie.overview}}</div>
+<div><span>Original Language: </span>{{movie.original_language}}</div>
+<div><span>Budget: </span>{{movie.budget | number}}</div>
+<div><span>Revenue: </span>{{movie.revenue | number}}</div>
+</div>
+<hr>
+<button type="button" (click)="goBack()">Return</button>
+
