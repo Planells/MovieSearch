@@ -16,9 +16,9 @@ import { SearcherService } from '../searcher.service';
 })
 export class MovieSearchComponent implements OnInit {
 
-  movies$!: Observable<Movie[]>;
+  public movies$!: Observable<Movie[]>;
   private searchTerms = new Subject<string>();
-  movie!: Movie | undefined;
+  public movie!: Movie | undefined;
 
   constructor(private SearcherService: SearcherService) {}
 
@@ -27,15 +27,9 @@ export class MovieSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.SearcherService.getMovieJson(121).subscribe(movie => this.movie = movie);
     this.movies$ = this.searchTerms.pipe(
-      // wait 300ms after each keystroke before considering the term
       debounceTime(300),
-
-      // ignore new term if same as previous term
       distinctUntilChanged(),
-
-      // switch to new search observable each time the term changes
       switchMap((term: string) => this.SearcherService.searchHeroes(term)),
     );
   }
